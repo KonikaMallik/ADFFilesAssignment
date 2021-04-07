@@ -1,0 +1,126 @@
+{
+	"name": "CopySalesToJSONPipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy Sales Data From SQL To JSON",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "AzureSqlSource",
+						"sqlReaderQuery": "select c.FirstName + ' ' + c.LastName as CustomerName, p.Name as \"Product Purchased\",\nsh.SalesOrderNumber, sh.OrderDate,  sd.LineTotal as \"Total Worth of Sales\"\nFROM [SalesLT].[Customer] c join [SalesLT].[SalesOrderHeader] sh \nON c.CustomerID = sh.CustomerID join [SalesLT].[SalesOrderDetail] sd\nON sh.SalesOrderID = sd.SalesOrderID join [SalesLT].[Product] p \nON p.ProductID = sd.ProductID",
+						"queryTimeout": "02:00:00",
+						"partitionOption": "None"
+					},
+					"sink": {
+						"type": "JsonSink",
+						"storeSettings": {
+							"type": "AzureBlobStorageWriteSettings"
+						},
+						"formatSettings": {
+							"type": "JsonWriteSettings"
+						}
+					},
+					"enableStaging": false,
+					"parallelCopies": 1,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "CustomerName",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Customer Name']"
+								}
+							},
+							{
+								"source": {
+									"name": "Product Purchased",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Product Purchased']"
+								}
+							},
+							{
+								"source": {
+									"name": "SalesOrderNumber",
+									"type": "String"
+								},
+								"sink": {
+									"path": "$['Order Number']"
+								}
+							},
+							{
+								"source": {
+									"name": "OrderDate",
+									"type": "DateTime"
+								},
+								"sink": {
+									"path": "$['Order Date']"
+								}
+							},
+							{
+								"source": {
+									"name": "Total Worth of Sales",
+									"type": "Decimal"
+								},
+								"sink": {
+									"path": "$['Total Worth of Sales']"
+								}
+							}
+						]
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SalesCustomerDetailsSource",
+						"type": "DatasetReference",
+						"parameters": {
+							"CustomerName": {
+								"value": "CustomerName",
+								"type": "Expression"
+							},
+							"ProductPurchased": {
+								"value": "Product Purchased",
+								"type": "Expression"
+							},
+							"OrderNumber": {
+								"value": "SalesOrderNumber",
+								"type": "Expression"
+							},
+							"OrderDate": {
+								"value": "OrderDate",
+								"type": "Expression"
+							},
+							"WorthOfSales": {
+								"value": "Total Worth of Sales",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "JSONOutputDataset",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2021-04-04T05:35:56Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,16 @@
+{
+	"name": "DestinationDataset_mwn",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "TrialSQLBulkDesLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"table": "LastModifiedSQLTable"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

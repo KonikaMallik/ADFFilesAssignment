@@ -1,0 +1,28 @@
+{
+	"name": "txttriggercopy",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "EventTriggerCopyPipeline",
+					"type": "PipelineReference"
+				},
+				"parameters": {
+					"FIlePipeline": "@triggerBody().fileName"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/input/blobs/input",
+			"blobPathEndsWith": "txt",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/ad1ee59b-40c0-4037-98fc-ac6ad5ae340b/resourceGroups/KonikaLTIRG/providers/Microsoft.Storage/storageAccounts/demoacckonika",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}

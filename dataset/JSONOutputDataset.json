@@ -1,0 +1,38 @@
+{
+	"name": "JSONOutputDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlobOutputSalesLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "storage"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Customer Name": {
+					"type": "string"
+				},
+				"Product Purchased": {
+					"type": "string"
+				},
+				"Order Number": {
+					"type": "string"
+				},
+				"Order Date": {
+					"type": "string"
+				},
+				"Total Worth of Sales": {
+					"type": "number"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

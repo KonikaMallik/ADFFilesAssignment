@@ -1,0 +1,30 @@
+{
+	"name": "SalesCustomerDetailsSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlSalesLS",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"CustomerName": {
+				"type": "string"
+			},
+			"ProductPurchased": {
+				"type": "string"
+			},
+			"OrderNumber": {
+				"type": "string"
+			},
+			"OrderDate": {
+				"type": "string"
+			},
+			"WorthOfSales": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

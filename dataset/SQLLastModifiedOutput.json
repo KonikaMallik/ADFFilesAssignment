@@ -1,0 +1,17 @@
+{
+	"name": "SQLLastModifiedOutput",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabaseLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "LastModified_Destination"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "SQLLastModifiedSource",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SQLLastModfiedSourceLS",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Incremental-7c20958b-978f-4fda-9c58-6c00834c54a2.txt",
+				"folderPath": "incrementalcopy",
+				"container": "lastmodifiedincrementaldestination"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

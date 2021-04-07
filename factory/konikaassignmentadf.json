@@ -1,0 +1,9 @@
+{
+	"name": "konikaassignmentadf",
+	"location": "eastus2",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "714a10c5-1f42-41bb-898e-9d8a20e8267f",
+		"tenantId": "b2ee32f1-c274-477f-9f0c-bfac1ba02499"
+	}
+}
